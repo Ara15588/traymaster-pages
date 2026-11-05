@@ -5,6 +5,7 @@ Static site for the TrayMaster game, published with GitHub Pages:
 - `index.html` - landing page
 - `privacy/` - privacy policy
 - `delete-account/` - how to request deletion of your data
+- `pre-registration-terms/` - terms for the Google Play pre-registration reward (Play Console -> Pre-registration -> Rewards)
 
 ## Keeping it accurate
 
