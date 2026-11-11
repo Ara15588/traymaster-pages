@@ -60,6 +60,20 @@ header.site a.brand {
   text-decoration: none;
 }
 
+header.site a.brand-logo { line-height: 0; flex: none; }
+
+header.site a.brand-logo img {
+  display: block;
+  height: 44px;
+  width: auto;
+}
+
+@media (max-width: 420px) {
+  header.site .wrap { flex-wrap: wrap; }
+  header.site a.brand-logo img { height: 34px; }
+  header.site nav a { margin-left: 12px; }
+}
+
 header.site nav a {
   margin-left: 16px;
   color: var(--muted);
@@ -80,10 +94,14 @@ h1 {
 
 h1.logo { margin: 0 0 10px; line-height: 0; }
 
-h1.logo img {
+/* The DeepSleep logo, drawn as a mask so it takes the theme's text colour. */
+h1.logo .logo-mark {
   display: block;
-  width: min(100%, 420px);
-  height: auto;
+  width: min(100%, 200px);
+  aspect-ratio: 500 / 470;
+  background: var(--text);
+  -webkit-mask: url("deepsleep-logo.png") left center / contain no-repeat;
+          mask: url("deepsleep-logo.png") left center / contain no-repeat;
 }
 
 img.hero {
