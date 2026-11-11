@@ -95,6 +95,8 @@ h1 {
 h1.logo { margin: 0 0 10px; line-height: 0; }
 
 /* The DeepSleep logo, drawn as a mask so it takes the theme's text colour. */
+h1.logo a { display: inline-block; width: min(100%, 200px); }
+
 h1.logo .logo-mark {
   display: block;
   width: min(100%, 200px);
