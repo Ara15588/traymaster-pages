@@ -30,6 +30,40 @@
       <p><a class="button" href="privacy/">Privacy policy</a></p>
       <p><a href="pre-registration-terms/">Pre-registration reward terms</a></p>
 
+      <section class="roadmap" aria-labelledby="roadmap-title">
+        <h2 id="roadmap-title">Roadmap</h2>
+
+        <div class="roadmap-body">
+        <div class="roadmap-tabs" role="tablist" aria-label="Game versions" aria-orientation="vertical">
+          <button type="button" role="tab" id="tab-v1" aria-controls="panel-v1" aria-selected="true">Version 1 <span>Launch</span></button>
+          <button type="button" role="tab" id="tab-u1" aria-controls="panel-u1" aria-selected="false" tabindex="-1">Update 1</button>
+        </div>
+
+        <div class="roadmap-panel" role="tabpanel" id="panel-v1" aria-labelledby="tab-v1" tabindex="0">
+          <p class="roadmap-head"><span class="status status-live">Available now</span> The launch version</p>
+          <ul>
+            <li><strong>Carry and balance:</strong> load your tray, keep it steady and deliver every order without spilling.</li>
+            <li><strong>All kinds of venues:</strong> cafés, fast food, bars, pizzerias, food trucks, a food court, a rooftop and more, each with harder shifts as you progress.</li>
+            <li><strong>Your waiter team:</strong> recruit waiters, level them up and look after their energy between shifts.</li>
+            <li><strong>Combos and tips:</strong> chain perfect deliveries to earn bigger tips.</li>
+            <li><strong>Daily play:</strong> challenges, quests and daily rewards.</li>
+            <li><strong>Tray designs:</strong> unlock new looks for your trays.</li>
+          </ul>
+          <p class="roadmap-extra">Free to play on Android, with optional in-game purchases. Available in 12 languages. Sign in with Google Play Games or play as a guest.</p>
+        </div>
+
+        <div class="roadmap-panel" role="tabpanel" id="panel-u1" aria-labelledby="tab-u1" tabindex="0" hidden>
+          <p class="roadmap-head"><span class="status status-soon">Coming soon</span> The first content update</p>
+          <ul>
+            <li><strong>Heroes and villains food collection:</strong> a new set of dishes to collect and serve, themed on heroes and villains.</li>
+            <li><strong>Weekly objective:</strong> the task system gets a bigger goal that runs all week, alongside the daily tasks.</li>
+            <li><strong>Waiters&rsquo; housing:</strong> buy your waiters a place to live, from flats and RVs to houses and more. Better housing changes how fast they recover energy between shifts.</li>
+            <li><strong>Nightmare challenges:</strong> much harder challenges with better rewards for players who want a real test.</li>
+          </ul>
+        </div>
+        </div>
+      </section>
+
       <h2>Support and data requests</h2>
       <p>For questions, privacy requests or to ask us to delete your data, write to <a href="mailto:deepsleepover9000@gmail.com">deepsleepover9000@gmail.com</a>, or see <a href="delete-account/">how to delete your data</a>.</p>
     </div>
@@ -38,5 +72,32 @@
   <footer class="site">
     <div class="wrap">&copy; 2026 DeepSleep. <a href="privacy/">Privacy policy</a></div>
   </footer>
+
+  <script>
+    // Roadmap tabs: show one version's details at a time.
+    (function () {
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('.roadmap-tabs [role="tab"]'));
+      function select(tab, focus) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+        if (focus) tab.focus();
+      }
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () { select(tab, false); });
+        tab.addEventListener('keydown', function (e) {
+          var next = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
+          else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = tabs[(i - 1 + tabs.length) % tabs.length];
+          else if (e.key === 'Home') next = tabs[0];
+          else if (e.key === 'End') next = tabs[tabs.length - 1];
+          if (next) { e.preventDefault(); select(next, true); }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

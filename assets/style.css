@@ -171,6 +171,88 @@ th { color: var(--muted); font-weight: 600; white-space: nowrap; }
   text-decoration: none;
 }
 
+/* Roadmap: version buttons on the left, one panel visible at a time on the right.
+   On narrow screens the buttons move to a row above the panel. */
+.roadmap-body {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
+  margin: 12px 0 18px;
+}
+
+.roadmap-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (max-width: 560px) {
+  .roadmap-body { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .roadmap-tabs { flex-direction: row; flex-wrap: wrap; }
+}
+
+.roadmap-tabs button {
+  text-align: left;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.roadmap-tabs button span { font-weight: 400; opacity: 0.8; }
+
+.roadmap-tabs button:hover { color: var(--accent); border-color: var(--accent); }
+
+.roadmap-tabs button[aria-selected="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.roadmap-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px 4px;
+  min-width: 0;
+}
+
+.roadmap-panel[hidden] { display: none; }
+
+.roadmap-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.status {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+.status-live { background: #dcf3e4; color: #17603a; }
+.status-soon { background: #fdf0d6; color: #7a5208; }
+
+@media (prefers-color-scheme: dark) {
+  .status-live { background: #173a28; color: #8fe0b0; }
+  .status-soon { background: #3d2f12; color: #f5cf7c; }
+}
+
+.roadmap-extra { color: var(--muted); font-size: 0.95rem; }
+
 footer.site {
   border-top: 1px solid var(--line);
   color: var(--muted);
